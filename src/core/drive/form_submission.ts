@@ -2,6 +2,7 @@ import { FetchRequest, FetchMethod, fetchMethodFromString, FetchRequestHeaders }
 import { FetchResponse } from "../../http/fetch_response"
 import { Location } from "../location"
 import { dispatch } from "../../util"
+import { Action } from "../types"
 
 export interface FormSubmissionDelegate {
   formSubmissionStarted(formSubmission: FormSubmission): void
@@ -50,6 +51,10 @@ export class FormSubmission {
 
   get action(): string {
     return this.submitter?.getAttribute("formaction") || this.formElement.action
+  }
+
+  get turboAction(): Action {
+    return this.formElement.getAttribute("data-turbo-action") as Action || "advance"
   }
 
   get location() {

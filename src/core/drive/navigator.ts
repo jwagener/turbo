@@ -79,7 +79,7 @@ export class Navigator {
         }
 
         const { statusCode } = fetchResponse
-        const visitOptions = { response: { statusCode, responseHTML } }
+        const visitOptions = { response: { statusCode, responseHTML }, action: formSubmission.turboAction }
         this.proposeVisit(fetchResponse.location, visitOptions)
       }
     }
